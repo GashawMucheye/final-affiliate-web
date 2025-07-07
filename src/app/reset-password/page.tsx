@@ -3,7 +3,9 @@
 import { useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 
-export default function ResetPasswordPage() {
+import { Suspense } from 'react';
+
+function ResetPasswordPageInner() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const token = searchParams.get('token');
@@ -119,5 +121,13 @@ export default function ResetPasswordPage() {
         </div>
       </form>
     </div>
+  );
+}
+
+export default function ResetPasswordPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ResetPasswordPageInner />
+    </Suspense>
   );
 }
