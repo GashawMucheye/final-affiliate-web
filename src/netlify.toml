@@ -1,0 +1,14 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/next"
+
+[build.environment]
+  NODE_VERSION = "18"
+  NEXT_PRIVATE_TARGET = "server"
+
+# Optional: enable cache directories
+[[cache]]
+  path = ".next/cache"
