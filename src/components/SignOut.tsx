@@ -4,7 +4,11 @@ import React from 'react';
 
 const SignOut: React.FC = () => {
   const handleSignOut = () => {
-    signOut({ callbackUrl: process.env.NEXT_PUBLIC_URL });
+    const callbackUrl =
+      typeof window !== 'undefined' && window.location.hostname === 'localhost'
+        ? 'http://localhost:3000'
+        : process.env.NEXT_PUBLIC_URL;
+    signOut({ callbackUrl });
   };
 
   return (
