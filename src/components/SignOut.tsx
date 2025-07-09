@@ -4,9 +4,7 @@ import React from 'react';
 
 const SignOut: React.FC = () => {
   const handleSignOut = () => {
-    signOut();
-    // Redirect to the home page after sign out
-    window.location.href = `${process.env.NEXT_PUBLIC_URL}`;
+    signOut({ callbackUrl: process.env.NEXT_PUBLIC_URL });
   };
 
   return (
