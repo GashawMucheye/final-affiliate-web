@@ -1,24 +1,48 @@
+// 'use client';
+// import { signOut } from 'next-auth/react';
+// import React from 'react';
+
+// const SignOut: React.FC = () => {
+//   const handleSignOut = () => {
+//     const callbackUrl =
+//       typeof window !== 'undefined' && window.location.hostname === 'localhost'
+//         ? 'http://localhost:3000'
+//         : 'https://unrivaled-gaufre-0578ba.netlify.app/';
+//     signOut({ callbackUrl });
+//   };
+
+//   return (
+//     <button
+//       onClick={handleSignOut}
+//       className='px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600'
+//     >
+//       Sign Out
+//     </button>
+//   );
+// };
+
+// export default SignOut;
+
 'use client';
 import { signOut } from 'next-auth/react';
-import React from 'react';
+import { useState } from 'react';
 
-const SignOut: React.FC = () => {
-  const handleSignOut = () => {
-    const callbackUrl =
-      typeof window !== 'undefined' && window.location.hostname === 'localhost'
-        ? 'http://localhost:3000'
-        : 'https://unrivaled-gaufre-0578ba.netlify.app/';
-    signOut({ callbackUrl });
+export default function LogoutButton() {
+  const [loading, setLoading] = useState(false);
+
+  const handleLogout = async () => {
+    setLoading(true);
+    await signOut({ callbackUrl: '/' });
+    setLoading(false);
   };
 
   return (
     <button
-      onClick={handleSignOut}
-      className='px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600'
+      onClick={handleLogout}
+      disabled={loading}
+      className='rounded-lg bg-red-600 px-4 py-2 text-white transition duration-300 hover:bg-red-700 focus:outline-none focus:ring focus:ring-red-300 disabled:bg-gray-400'
     >
-      Sign Out
+      {loading ? 'Logging out...' : 'Logout'}
     </button>
   );
-};
-
-export default SignOut;
+}
