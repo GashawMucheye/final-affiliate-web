@@ -6,7 +6,7 @@ const SignOut: React.FC = () => {
   const handleSignOut = () => {
     signOut();
     // Redirect to the home page after sign out
-    window.location.href = '/';
+    window.location.href = `${process.env.NEXT_PUBLIC_URL}`;
   };
 
   return (
