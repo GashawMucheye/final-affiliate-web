@@ -7,7 +7,7 @@ const SignOut: React.FC = () => {
     const callbackUrl =
       typeof window !== 'undefined' && window.location.hostname === 'localhost'
         ? 'http://localhost:3000'
-        : process.env.NEXT_PUBLIC_URL;
+        : 'https://unrivaled-gaufre-0578ba.netlify.app/';
     signOut({ callbackUrl });
   };
 
