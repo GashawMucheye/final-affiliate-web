@@ -1,16 +1,16 @@
-import NextAuth from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
-import User from "@/models/User";
-import bcrypt from "bcryptjs";
-import { connectToDB } from "@/lib/db";
+import NextAuth from 'next-auth';
+import CredentialsProvider from 'next-auth/providers/credentials';
+import User from '@/models/User';
+import bcrypt from 'bcryptjs';
+import { connectToDB } from '@/lib/db';
 
 export const authOptions = {
   providers: [
     CredentialsProvider({
-      name: "Credentials",
+      name: 'Credentials',
       credentials: {
-        email: { type: "text" },
-        password: { type: "password" },
+        email: { type: 'text' },
+        password: { type: 'password' },
       },
       async authorize(credentials) {
         if (!credentials) return null;
@@ -44,7 +44,7 @@ export const authOptions = {
     },
   },
   pages: {
-    signIn: "/login",
+    signIn: '/login',
   },
   secret: process.env.NEXTAUTH_SECRET,
 };
