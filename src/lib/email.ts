@@ -1,7 +1,8 @@
 import nodemailer from 'nodemailer';
 
 export async function sendResetEmail(email: string, token: string) {
-  const resetUrl = `${process.env.NEXT_PUBLIC_URL}/reset-password?token=${token}`;
+  const baseUrl = process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'; // fallback just in case
+  const resetUrl = `${baseUrl}/reset-password?token=${token}`;
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',
